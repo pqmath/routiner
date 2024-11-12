@@ -1,0 +1,24 @@
+package com.br.matthew.controllers;
+
+import java.time.LocalTime;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.br.matthew.entities.Activity;
+
+@RestController
+@RequestMapping(value = "/activities")
+public class ActivityController {
+
+	@GetMapping
+	ResponseEntity<Activity> findAll() {
+		Activity act = new Activity(null, "Testing", LocalTime.now(), LocalTime.now());
+		return ResponseEntity.ok().body(act);
+	}
+
+	
+	
+}

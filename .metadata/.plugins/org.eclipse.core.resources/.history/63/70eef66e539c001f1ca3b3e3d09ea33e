@@ -1,0 +1,38 @@
+package com.br.matthew.config;
+
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+
+import com.br.matthew.entities.User;
+import com.br.matthew.repositories.GoalRepository;
+import com.br.matthew.repositories.UserRepository;
+
+@Configuration
+@Profile("test")
+public class TestConfig implements CommandLineRunner{
+
+	@Autowired
+	private UserRepository repository;
+	
+	@Override
+	public void run(String... args) throws Exception {
+		
+		User user1 = new User();
+		User user2 = new User();
+		
+		user1.setName("Matthew");
+		user1.createActivity("Trabalhar no aplicativo");
+		user1.createGoal("Terminar essa coisa", "Termina essa porra ai");
+		
+		user2.setName("Jhon");
+		user2.createActivity("Mamar o bonde");
+		user2.createGoal("Mame o povo", "e mio mama, se nao vai ter que dar o roxo");
+		
+		repository.saveAll(Arrays.asList(user1,user2));
+	}
+	
+}

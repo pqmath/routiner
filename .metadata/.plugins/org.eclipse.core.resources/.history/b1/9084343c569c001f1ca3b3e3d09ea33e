@@ -1,0 +1,51 @@
+package com.br.matthew.config;
+
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+
+import com.br.matthew.entities.Activity;
+import com.br.matthew.entities.Goal;
+import com.br.matthew.entities.User;
+import com.br.matthew.enums.Status;
+import com.br.matthew.repositories.ActivityRepository;
+import com.br.matthew.repositories.UserRepository;
+
+@Configuration
+@Profile("test")
+public class TestConfig implements CommandLineRunner{
+
+	@Autowired
+	private UserRepository userRepo;
+	
+	@Autowired
+	private ActivityRepository activityRepo;
+	
+	@Override
+	public void run(String... args) throws Exception {
+		
+		User user1 = new User();
+		User user2 = new User();
+		
+		Activity act1 = new Activity("Trabalhar no aplicativo", null, null);
+		Activity act2 = new Activity("Mamar o bonde", null, null);
+		
+		Goal goal1 = new Goal("Terminar o programa", "Terminar o programa esta semana", Status.IN_PROCESS);
+		Goal goal2 = new Goal("Mame o bonde", "Mame o bonde ou da o botao", Status.IN_PROCESS);
+		
+		user1.setName("Matthew");
+		user1.createGoal(goal1);
+		user1.createActivity(act1);
+		
+		user2.setName("Jhon AKA tortuga ");
+		user2.createGoal(goal2);
+		user2.createActivity(act2);
+		
+		activityRepo.saveAll(Arrays.asList(act1, act2));
+		userRepo.saveAll(Arrays.asList(user1,user2));
+	}
+	
+}

@@ -1,0 +1,5 @@
+package com.br.matthew.exceptions;
+
+public class InvalidField {
+
+}
