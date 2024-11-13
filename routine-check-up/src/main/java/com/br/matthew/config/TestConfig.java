@@ -32,17 +32,17 @@ public class TestConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		User user1 = new User(null, "Matthew", null, null);
-		User user2 = new User(null, "Jon AKA tortuga", null, null);
+		User user2 = new User(null, "Jon", null, null);
 
 		userRepo.saveAll(Arrays.asList(user1, user2));
 		
 		Activity act1 = new Activity(user1, "Trabalhar no aplicativo", null, null);
-		Activity act2 = new Activity(user2, "Mamar o bonde", null, null);
+		Activity act2 = new Activity(user2, "Finalizar o banco de dados", null, null);
 		
 		activityRepo.saveAll(Arrays.asList(act1, act2));
 
 		Goal goal1 = new Goal(user1, "Terminar o programa", "Terminar o programa esta semana", Status.IN_PROCESS);
-		Goal goal2 = new Goal(user2, "Mame o bonde", "Mame o bonde ou da o botao", Status.IN_PROCESS);
+		Goal goal2 = new Goal(user2, "Finalize o banco de dados", "Realize testes e finalize o banco de dados", Status.IN_PROCESS);
 
 		goalRepo.saveAll(Arrays.asList(goal1, goal2));
 
